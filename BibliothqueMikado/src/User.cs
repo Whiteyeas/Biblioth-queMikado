@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BibliothqueMikado.src
-{
-    class User
+
+    public class User
     {
         public string Name { get; set; }
 
@@ -13,6 +12,8 @@ namespace BibliothqueMikado.src
         public string Rank { get; set; }
 
         public List<int> Favori { get; set; }
+
+        public int Id { get; set; }
 
         public User(string name, string password, string rank)
         {
@@ -28,5 +29,18 @@ namespace BibliothqueMikado.src
             Rank = rank;
             Favori = favori;
         }
+
+        public bool AddMedia(Media media)
+        {
+            Favori.Add(media.Id);
+            return true;
+        }
+        public bool RemoveMedia(int id)
+        {
+            if (id < 0) throw new ArgumentException("Index is negative");
+            if (id > Favori.Count) throw new ArgumentOutOfRangeException("Index is out of range");
+            Favori.Remove(Id);
+            return true;
+        }
     }
-}
+
